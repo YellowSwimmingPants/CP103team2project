@@ -1,4 +1,41 @@
 <resources>
-    <string name="app_name">籃球助手</string>
+    <string name="app_name">basketball assitance</string>
     <string name="signin">SignIn</string>
+    <!--<string name="facebook_app_id">135059764096023</string>-->
+    <!--<string name="fb_login_protocol_scheme">fb135059764096023</string>-->
+    <!---->
+
+    <string name="action_settings">Settings</string>
+    <string name="facebook_app_id">135059764096023</string>
+    <string name="fb_login_protocol_scheme">fb135059764096023</string>
+    <string name="msg_UserIdExist">使用者ID已存在</string>
+    <string name="text_UserId">使用者名稱</string>
+    <string name="msg_InputEmpty">輸入不得為空白</string>
+    <string name="msg_ConfirmPasswordNotSameAsPassword">請確認兩次密碼相同</string>
+    <string name="hint_etPassword">密碼</string>
+    <string name="text_etName">名字</string>
+    <string name="text_etEmail">電子信箱</string>
+    <string name="msg_FailCreateAccount">帳號建立失敗</string>
+    <string name="msg_SuccessfullyCreateAccount">建立帳號成功</string>
+    <string name="msg_InvalidUserorPassword">無效的使用者或密碼</string>
+    <string name="msg_NoNetwork">無法使用網路</string>
+    <string name="textAlerDialogTitle">注意</string>
+    <string name="textFixInfoCancel">是否確定不儲存就離開此頁面？</string>
+    <string name="textYes">Yes</string>
+    <string name="textNo">No</string>
+    <string name="tvUserAccount">帳號：</string>
+    <string name="tvUserName">姓名：</string>
+    <string name="btFixInfo">修改資料</string>
+    <string name="tvPriority">權限：</string>
+    <string name="btManagement">使用者管理</string>
+    <string name="tvInputUserPassword">請輸入密碼：</string>
+    <string name="tvInputNewPassword">請輸入新密碼：</string>
+    <string name="tvInputNewPasswordAgain">請確認新密碼：</string>
+    <string name="btCommit">存擋</string>
+    <string name="btCancel">取消</string>
+    <string name="tvManager">管理者</string>
+    <string name="tvCommonUser">使用者</string>
+    <string name="msg_InvalidUserOrPassword">請確認帳號或密碼</string>
+
+
 </resources>
