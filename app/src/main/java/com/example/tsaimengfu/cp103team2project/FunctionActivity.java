@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.example.tsaimengfu.cp103team2project.BillBoard.BoardFragment;
 import com.example.tsaimengfu.cp103team2project.Management.ManagerInfoFragment;
 
 public class FunctionActivity extends AppCompatActivity {
@@ -20,34 +21,31 @@ public class FunctionActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment fragment;
             switch (item.getItemId()) {
+
+
 //                case R.id.itemMemberInfo:
 //                    fragment = new MemberInfoFragment();
 //                    break;
-//                case R.id.itemRecordForm:
-//                    fragment = new GameRecordFragment();
-//                    break;
+                case R.id.itemRecordForm:
+                    fragment = new GameRecordFragment();
+                    item.setChecked(true);
+                    changeFragment(fragment);
+                    setTitle(item.getTitle());
+                    break;
                 case R.id.itemManagement:
                     fragment = new ManagerInfoFragment();
                     item.setChecked(true);
                     changeFragment(fragment);
                     setTitle(item.getTitle());
                     break;
-//
+
                 default:
-                    fragment = new GameRecordFragment();
+                    fragment = new BoardFragment();
                     item.setChecked(true);
                     changeFragment(fragment);
                     setTitle(item.getTitle());
                     break;
-
-//                default:
-//                    fragment = new BillBoardFragment();
-//                    break;
             }
-//            fragment = new GameRecordFragment();
-//            item.setChecked(true);
-//            changeFragment(fragment);
-//            setTitle(item.getTitle());
             return false;
         }
 
@@ -65,7 +63,7 @@ public class FunctionActivity extends AppCompatActivity {
     }
 
     private void initContent() {
-        bottomNavigationView.setSelectedItemId(R.id.itemRecordForm);
+        bottomNavigationView.setSelectedItemId(R.id.itemBillBoard);
     }
 
     private void changeFragment(Fragment fragment) {

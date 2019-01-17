@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".HomeActivity">
 
@@ -14,45 +14,54 @@
 
         <TextView
             android:id="@+id/tvBoard"
-            android:text="@string/tvBoard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:layout_margin="10dp"
-            android:textSize="30sp"/>
-
+            android:text="@string/tvBoard"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </android.support.constraint.ConstraintLayout>
 
     <FrameLayout
-        android:id="@+id/rvBoard"
+        android:id="@+id/flBoard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvBoards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
 
     </FrameLayout>
 
     <CalendarView
-        android:id="@+id/cvCalendar"
+        android:id="@+id/cvEvent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
     </CalendarView>
 
     <TextView
         android:id="@+id/tvDayoff"
-        android:text="@string/tvDayoff"
-        android:textSize="30sp"
-        android:layout_margin="10dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/tvDayoff"
+        android:textSize="30sp" />
 
     <FrameLayout
-        android:id="@+id/rvDayoff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvDayoffs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
 
     </FrameLayout>
 
@@ -68,15 +77,16 @@
         </ListView>
 
         <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabNewBoard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:padding="6dp"
             android:layout_gravity="bottom|right"
-            app:layout_anchor="@+id/lvNewBoard"
-            app:layout_anchorGravity="bottom|right|end"
+            android:layout_margin="16dp"
             android:elevation="6dp"
-            app:fabSize="auto"/>
+            android:padding="6dp"
+            app:fabSize="auto"
+            app:layout_anchor="@+id/lvNewBoard"
+            app:layout_anchorGravity="bottom|right|end" />
 
 
     </android.support.design.widget.CoordinatorLayout>

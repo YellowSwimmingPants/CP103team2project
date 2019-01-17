@@ -25,6 +25,9 @@ public class ManagerInfoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (getActivity() != null) {
+            activity = getActivity();
+        }
         View view = inflater.inflate(R.layout.activity_manager, container, false);
         show(view);
         return view;
