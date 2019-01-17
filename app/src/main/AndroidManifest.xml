@@ -47,8 +47,13 @@
                 <data android:scheme="fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+        <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
 
-        <activity android:name=".ActivePage.CreateTeamActivity"></activity>
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+        <!--</intent-filter>-->
+
+        <activity android:name=".QRCode.qrcode.CreateTeamActivity"></activity>
         <activity android:name=".ActivePage.RegisterActivity"></activity>
 
 
