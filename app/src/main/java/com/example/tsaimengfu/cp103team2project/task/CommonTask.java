@@ -11,39 +11,19 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class MyTask extends AsyncTask<String, Integer, String> {
-    private final static String TAG = "MyTask";
+public class CommonTask extends AsyncTask<String, Integer, String> {
+    private final static String TAG = "CommonTask";
     private String url, outStr;
 
-    public MyTask(String url, String outStr) {
+    public CommonTask(String url, String outStr) {
         this.url = url;
         this.outStr = outStr;
     }
 // 01
-//    @Override
-//    protected void onPreExecute() {
-//        super.onPreExecute();
-//        // show progress dialog 提醒正在執行
-//    }
-
     @Override
     protected String doInBackground(String... params) {
-//        publishProgress(10);
         return getRemoteData();
     }
-
-//    @Override
-//    protected void onProgressUpdate(Integer... values) {
-//        super.onProgressUpdate(values);
-//        // show values[0] on progress bar  進度條
-//    }
-
-//    @Override
-//    protected void onPostExecute(String s) {
-//        super.onPostExecute(s);
-//        // stop progress dialog
-//        // show results
-//    }
 
     private String getRemoteData() {
         HttpURLConnection connection = null;
@@ -53,6 +33,7 @@ public class MyTask extends AsyncTask<String, Integer, String> {
             connection.setDoInput(true); // allow inputs
             connection.setDoOutput(true); // allow outputs
             // 不知道請求內容大小時可以呼叫此方法將請求內容分段傳輸，設定0代表使用預設大小
+            // 參考HttpURLConnection API的Posting Content部分
             connection.setChunkedStreamingMode(0);
             connection.setUseCaches(false); // do not use a cached copy
             connection.setRequestMethod("POST");
