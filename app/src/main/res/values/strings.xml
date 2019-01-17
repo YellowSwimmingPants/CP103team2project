@@ -21,7 +21,11 @@
     <string name="msg_SuccessfullyCreateAccount">建立帳號成功</string>
     <string name="msg_InvalidUserorPassword">無效的使用者或密碼</string>
     <string name="msg_NoNetwork">無法使用網路</string>
-   <!--for user priority -->
+    <!--for board-->
+    <string name="tvBoard">公布欄</string>
+    <string name="btNewBoard">新增</string>
+    <string name="tvDayoff">請假</string>
+    <!--for user priority -->
     <string name="textAlerDialogTitle">注意</string>
     <string name="textFixInfoCancel">是否確定不儲存就離開此頁面？</string>
     <string name="textYes">Yes</string>
@@ -39,12 +43,12 @@
     <string name="tvManager">管理者</string>
     <string name="tvCommonUser">使用者</string>
 
-   <!--for qr code-->
+    <!--for qr code-->
     <string name="textScanQrCode">掃描QR Code</string>
     <string name="textCreateCode">產生QR Code</string>
     <string name="textInputSomething">請輸入文字</string>
     <string name="textResultNotFound">無法讀取條碼</string>
-    <!---->
+    <!--for record-->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="player">場上五人</string>
     <string name="changePlayer">替換球員</string>
