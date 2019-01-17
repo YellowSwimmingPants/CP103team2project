@@ -4,6 +4,7 @@
     <!--<string name="facebook_app_id">135059764096023</string>-->
     <!--<string name="fb_login_protocol_scheme">fb135059764096023</string>-->
     <!---->
+    <!---->
     <!--for active app use-->
     <string name="msg_InvalidUserOrPassword">請確認帳號或密碼</string>
     <string name="action_settings">Settings</string>
