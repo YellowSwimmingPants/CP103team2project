@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/itemBillBoard"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="公布欄" />
+
+    <item
+        android:id="@+id/itemMemberInfo"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="成員資料" />
+
+    <item
+        android:id="@+id/itemRecordForm"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="紀錄表" />
+
+    <item
+        android:id="@+id/itemManagement"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="管理" />
+</menu>
