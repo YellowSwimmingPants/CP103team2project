@@ -3,6 +3,7 @@ package com.example.tsaimengfu.cp103team2project.Management;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.tsaimengfu.cp103team2project.FunctionActivity;
 import com.example.tsaimengfu.cp103team2project.R;
 
 public class FixInfoActivity extends AppCompatActivity {
@@ -109,6 +111,8 @@ public class FixInfoActivity extends AppCompatActivity {
                 case DialogInterface.BUTTON_POSITIVE:
                     /* 結束此Activity頁面 */
                     if (getActivity() != null) {
+                        Intent intent = new Intent(getActivity(), FunctionActivity.class);
+                        getActivity().startActivity(intent);
                         getActivity().finish();
                     }
                     break;
