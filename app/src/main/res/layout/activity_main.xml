@@ -105,7 +105,16 @@
                     <!--android:text="登出"-->
                     <!--android:textColor="#ea001a" />-->
 
+
             </LinearLayout>
+
+            <Button
+                android:id="@+id/bt_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bt_home"
+                android:layout_gravity="right|end"
+                />
 
         </LinearLayout>
 

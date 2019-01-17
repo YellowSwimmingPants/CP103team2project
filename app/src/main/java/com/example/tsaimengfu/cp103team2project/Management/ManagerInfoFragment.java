@@ -26,36 +26,36 @@ public class ManagerInfoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_manager, container, false);
-        show();
+        show(view);
         return view;
 
 
     }
 
-    private void show() {
-        btFixInfo = btFixInfo.findViewById(R.id.btFixInfo);
-        btManagement = btManagement.findViewById(R.id.btManagement);
-        tvUserAccount = tvUserAccount.findViewById(R.id.tvUserAccount);
-        tvAccount = tvAccount.findViewById(R.id.tvAccount);
-        tvUserName = tvUserName.findViewById(R.id.tvUserName);
-        tvName = tvName.findViewById(R.id.tvName);
-        tvPriority = tvPriority.findViewById(R.id.tvPriority);
-        tvPri = tvPri.findViewById(R.id.tvPri);
+    private void show(View view) {
+        btFixInfo = view.findViewById(R.id.btFixInfo);
+        btManagement = view.findViewById(R.id.btManagement);
+        tvUserAccount = view.findViewById(R.id.tvUserAccount);
+        tvAccount = view.findViewById(R.id.tvAccount);
+        tvUserName = view.findViewById(R.id.tvUserName);
+        tvName = view.findViewById(R.id.tvName);
+        tvPriority = view.findViewById(R.id.tvPriority);
+        tvPri = view.findViewById(R.id.tvPri);
 
         btFixInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity, FixInfoActivity.class);
-                activity.startActivity(intent);
-                activity.finish();
+                Intent intent = new Intent(getActivity(), FixInfoActivity.class);
+                getActivity().startActivity(intent);
+                getActivity().finish();
             }
         });
         btManagement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity, UserManagementActivity.class);
-                activity.startActivity(intent);
-                activity.finish();
+                Intent intent = new Intent(getActivity(), UserManagementActivity.class);
+                getActivity().startActivity(intent);
+                getActivity().finish();
             }
         });
 

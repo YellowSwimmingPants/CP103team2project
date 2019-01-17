@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.tsaimengfu.cp103team2project.FunctionActivity;
 import com.example.tsaimengfu.cp103team2project.QRCode.qrcode.CreateTeamActivity;
 import com.example.tsaimengfu.cp103team2project.R;
 import com.example.tsaimengfu.cp103team2project.task.Common;
@@ -24,7 +25,7 @@ import com.google.gson.JsonObject;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button fb_login, bt_register, bt_login, logoutButton;
+    private Button fb_login, bt_register, bt_login, logoutButton, bt_home;
     private EditText et_account, et_password;
     CallbackManager callbackManager;
     private ProgressDialog pDialog;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         bt_login = (Button) findViewById(R.id.bt_login);
         tvMessage = findViewById(R.id.tvMessage);
         bt_register = (Button) findViewById(R.id.bt_register);
+        bt_home = (Button) findViewById(R.id.bt_home);
         setResult(RESULT_CANCELED);
 
         bt_login.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +83,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(nextpage);
             }
         });
+
+
+        bt_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent home = new Intent(MainActivity.this, FunctionActivity.class);
+                startActivity(home);
+            }
+        });
 //for facebook source code
         callbackManager = CallbackManager.Factory.create();
 
@@ -101,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
                         // App code
                     }
                 });
-
     }
 
 

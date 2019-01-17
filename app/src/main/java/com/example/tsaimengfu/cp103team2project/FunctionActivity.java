@@ -20,23 +20,34 @@ public class FunctionActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment fragment;
             switch (item.getItemId()) {
-                case R.id.itemMemberInfo:
-                    fragment = new ManagerInfoFragment();
-                    break;
+//                case R.id.itemMemberInfo:
+//                    fragment = new MemberInfoFragment();
+//                    break;
 //                case R.id.itemRecordForm:
 //                    fragment = new GameRecordFragment();
 //                    break;
-//                case R.id.itemManagement:
-//                    fragment = new ManagementFragment();
-//                    break;
+                case R.id.itemManagement:
+                    fragment = new ManagerInfoFragment();
+                    item.setChecked(true);
+                    changeFragment(fragment);
+                    setTitle(item.getTitle());
+                    break;
+//
+                default:
+                    fragment = new GameRecordFragment();
+                    item.setChecked(true);
+                    changeFragment(fragment);
+                    setTitle(item.getTitle());
+                    break;
+
 //                default:
 //                    fragment = new BillBoardFragment();
 //                    break;
             }
-            fragment = new GameRecordFragment();
-            item.setChecked(true);
-            changeFragment(fragment);
-            setTitle(item.getTitle());
+//            fragment = new GameRecordFragment();
+//            item.setChecked(true);
+//            changeFragment(fragment);
+//            setTitle(item.getTitle());
             return false;
         }
 
