@@ -26,7 +26,7 @@ public final class QRCodeEncoder {
     private String title = null;
     private BarcodeFormat format = null;
     private boolean encoded;
-
+// 01
     public QRCodeEncoder(String data, Bundle bundle, String type, String format, int dimension) {
         this.dimension = dimension;
         encoded = encodeContents(data, bundle, type, format);
