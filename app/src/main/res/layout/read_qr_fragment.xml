@@ -5,7 +5,7 @@
     android:background="@drawable/gradient"
     android:orientation="vertical"
     android:padding="16dp">
-
+<!---->
     <Button
         android:id="@+id/btScanQrCode"
         android:layout_width="match_parent"
