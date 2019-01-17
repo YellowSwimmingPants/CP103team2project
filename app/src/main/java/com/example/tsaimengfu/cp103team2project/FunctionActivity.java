@@ -9,6 +9,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.example.tsaimengfu.cp103team2project.Management.ManagerInfoFragment;
+
 public class FunctionActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
 
@@ -17,10 +19,10 @@ public class FunctionActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment fragment;
-//            switch (item.getItemId()) {
-//                case R.id.itemMemberInfo:
-//                    fragment = new MemberFragment();
-//                    break;
+            switch (item.getItemId()) {
+                case R.id.itemMemberInfo:
+                    fragment = new ManagerInfoFragment();
+                    break;
 //                case R.id.itemRecordForm:
 //                    fragment = new GameRecordFragment();
 //                    break;
@@ -30,7 +32,7 @@ public class FunctionActivity extends AppCompatActivity {
 //                default:
 //                    fragment = new BillBoardFragment();
 //                    break;
-//            }
+            }
             fragment = new GameRecordFragment();
             item.setChecked(true);
             changeFragment(fragment);
