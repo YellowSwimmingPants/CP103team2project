@@ -113,7 +113,7 @@ public class FixInfoActivity extends AppCompatActivity {
                     }
                     break;
                 case DialogInterface.BUTTON_NEGATIVE:
-                    /* 關閉對話視窗 */
+                    /* 關閉對話視窗 01 */
                     dialog.cancel();
                     break;
                 default:

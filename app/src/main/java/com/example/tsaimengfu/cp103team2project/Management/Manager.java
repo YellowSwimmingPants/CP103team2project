@@ -6,7 +6,7 @@ class Manager implements Serializable {
     private int id;
     private String userAccount, userName;
     private boolean priority;
-
+// 01
     public Manager(int id, String userAccount, String userName, Boolean priority) {
         this.id = id;
         this.userAccount = userAccount;

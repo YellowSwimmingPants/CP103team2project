@@ -85,7 +85,7 @@ public class ManagerFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(activity));
         recyclerView.setAdapter(new ManagerAdapter(activity, getManagers()));
     }
-
+// 假資料
     private List<Manager> getManagers(){
         List<Manager> managers = new ArrayList<>();
         managers.add(new Manager(1, "psy", "John", true ));

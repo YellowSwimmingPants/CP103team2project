@@ -85,7 +85,7 @@ public class UserFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(activity));
         recyclerView.setAdapter(new UserAdapter(activity, getUsers()));
     }
-
+// 假資料
     private List<User> getUsers(){
         List<User> users = new ArrayList<>();
         users.add(new User(2,"apple","Mark",true));
