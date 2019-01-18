@@ -5,13 +5,29 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     android:orientation="vertical"
     tools:context=".QRCode.qrcode.CreateTeamActivity">
+
+
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="459dp"
+        android:layout_weight="1"
+        android:background="@drawable/gradient" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_margin="24dp"
+        android:backgroundTint="#d2d0d0"
+        android:src="@drawable/add"
+        app:rippleColor="#ffffff"
+        app:elevation="6dp" />
+
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
@@ -20,5 +36,6 @@
         android:layout_gravity="bottom"
         android:background="?android:attr/windowBackground"
         app:menu="@menu/navigate_menu" />
-<!---->
+
+    <!---->
 </LinearLayout>

@@ -1,21 +1,22 @@
 package com.example.tsaimengfu.cp103team2project.QRCode.qrcode;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.tsaimengfu.cp103team2project.R;
 
 public class CreateTeamActivity extends AppCompatActivity {
     private ActionBar actionBar;
-
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -50,6 +51,14 @@ public class CreateTeamActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_afterlogin);
+        FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fabAdd);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Intent intent = new Intent(CreateTeamActivity.this, InsertTeam.class);
+                startActivity(intent);
+            }
+        });
         actionBar = getSupportActionBar();
         if (actionBar != null) {
             // 設定action bar可以顯示圖示 01
@@ -74,5 +83,11 @@ public class CreateTeamActivity extends AppCompatActivity {
                 fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content, fragment);
         fragmentTransaction.commit();
+
+
     }
+
+
+
 }
+
