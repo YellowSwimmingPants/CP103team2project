@@ -75,6 +75,7 @@ public class ManagerFragment extends Fragment {
                 tvUserAccount = itemView.findViewById(R.id.tvUserAccount);
                 tvUserName = itemView.findViewById(R.id.tvUserName);
                 swPriority = itemView.findViewById(R.id.swPriority);
+                swPriority.setChecked(true);
             }
         }
 

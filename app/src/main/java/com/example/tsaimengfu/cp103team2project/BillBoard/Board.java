@@ -6,13 +6,11 @@ import java.util.Date;
 class Board implements Serializable {
     private int id;
     private String title, massege;
-    private Date date;
 
-    public Board(int id, String title, String massege, Date date) {
+    public Board(int id, String title, String massege) {
         this.id = id;
         this.title = title;
         this.massege = massege;
-        this.date = date;
     }
 
     public int getId() {
@@ -39,11 +37,4 @@ class Board implements Serializable {
         this.massege = massege;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
 }
