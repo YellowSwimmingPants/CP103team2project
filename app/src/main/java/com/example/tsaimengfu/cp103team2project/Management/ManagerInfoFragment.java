@@ -31,7 +31,9 @@ public class ManagerInfoFragment extends Fragment {
     private TextView tvUserAccount, tvAccount, tvUserName, tvName, tvPriority, tvPri;
     private Activity activity;
     private CommonTask userTask;
-//    List<User> users = null;
+    //    List<User> users = null;
+    int id;
+    String userAccount, userName;
 
 
     @Nullable
@@ -77,10 +79,12 @@ public class ManagerInfoFragment extends Fragment {
     }
 
     private void showUser() {
-        User user = null;
 
-//        tvName.setText(user.getUserName());
-//        tvAccount.setText(user.getUserAccount());
+//        User user = null;
+        User user = new User(id, userAccount, userName);
+
+        tvName.setText(user.getUserName());
+        tvAccount.setText(user.getUserAccount());
         tvPri.setText(R.string.tvManager);
 
     }
@@ -99,7 +103,7 @@ public class ManagerInfoFragment extends Fragment {
                     String jsonIn = userTask.execute().get();
                     Type listType = new TypeToken<List<User>>() {
                     }
-                    .getType();
+                            .getType();
                     users = new Gson().fromJson(jsonIn, listType);
                 } catch (Exception e) {
 //                        Log.e(TAG, e.toString());
