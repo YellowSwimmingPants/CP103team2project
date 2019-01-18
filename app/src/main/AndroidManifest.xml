@@ -39,6 +39,7 @@
         <activity android:name=".Management.FixInfoActivity"></activity>
         <activity android:name=".FunctionActivity"></activity>
         <activity android:name=".Management.UserManagementActivity"></activity>
+        <activity android:name=".BuildGameActivity"></activity>
 
 
         <meta-data
