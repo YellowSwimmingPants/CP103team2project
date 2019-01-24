@@ -44,6 +44,7 @@ public class ManagerFragment extends Fragment {
             activity = getActivity();
         }
         View view = inflater.inflate(R.layout.fragment_managers, container, false);
+        handleViews(view);
         srUsers = view.findViewById(R.id.srUsers);
         srUsers.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -53,7 +54,7 @@ public class ManagerFragment extends Fragment {
                 srUsers.setRefreshing(false);
             }
         });
-        handleViews(view);
+
         return view;
     }
 
@@ -105,35 +106,37 @@ public class ManagerFragment extends Fragment {
     private void handleViews(View view) {
         rvManagers = view.findViewById(R.id.recycleView);
         rvManagers.setLayoutManager(new LinearLayoutManager(activity));
+        rvManagers.setAdapter(new ManagerAdapter(activity, managers));
     }
 
     // 假資料
     private List<Manager> getManagers() {
-//        List<Manager> managers = new ArrayList<>();
-//        managers.add(new Manager(1, "psy", "John", true ));
-//        return managers;
-        String url = Common.URL + "/UserServlet";
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("action", "getAll");
-        userTask = new CommonTask(url, jsonObject.toString());
-        if (networkConnected(activity)) {
-            try {
-                String jsonIn = userTask.execute().get();
-                Type listType = new TypeToken<List<User>>() {
-                }
-                .getType();
-                managers = new Gson().fromJson(jsonIn, listType);
-            } catch (Exception e) {
-//                        Log.e(TAG, e.toString());
-            }
-            if (managers == null || managers.isEmpty()) {
-
-            } else {
-                rvManagers.setAdapter(new ManagerAdapter(activity, managers));
-            }
-        } else {
-//                showToast(this, R.string.text_NoNetwork);
-        }
+        List<Manager> managers = new ArrayList<>();
+        managers.add(new Manager(1, "psy", "John"));
         return managers;
+//        String url = Common.URL + "/UserServlet";
+//        JsonObject jsonObject = new JsonObject();
+//        jsonObject.addProperty("action", "getAll");
+//        jsonObject.addProperty("id", 2);
+//        userTask = new CommonTask(url, jsonObject.toString());
+//        if (networkConnected(activity)) {
+//            try {
+//                String jsonIn = userTask.execute().get();
+//                Type listType = new TypeToken<List<User>>() {
+//                }
+//                .getType();
+//                managers = new Gson().fromJson(jsonIn, listType);
+//            } catch (Exception e) {
+////                        Log.e(TAG, e.toString());
+//            }
+//            if (managers == null || managers.isEmpty()) {
+//
+//            } else {
+//
+//            }
+//        } else {
+////                showToast(this, R.string.text_NoNetwork);
+//        }
+//        return managers;
     }
 }

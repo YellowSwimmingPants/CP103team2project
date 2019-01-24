@@ -53,4 +53,6 @@
     <string name="player">場上五人</string>
     <string name="changePlayer">替換球員</string>
     <string name="bt_home">略過</string>
+    <string name="text_NoNetwork">沒有網路</string>
+    <string name="text_NoReturn">沒有回傳值</string>
 </resources>

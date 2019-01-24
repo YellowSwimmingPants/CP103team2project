@@ -20,6 +20,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.tsaimengfu.cp103team2project.task.Common.networkConnected;
@@ -31,10 +32,8 @@ public class ManagerInfoFragment extends Fragment {
     private TextView tvUserAccount, tvAccount, tvUserName, tvName, tvPriority, tvPri;
     private Activity activity;
     private CommonTask userTask;
-    //    List<User> users = null;
-    int id;
     String userAccount, userName;
-
+    User user = null;
 
     @Nullable
     @Override
@@ -46,7 +45,6 @@ public class ManagerInfoFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_manager, container, false);
         show(view);
         getUsers();
-        showUser();
         return view;
     }
 
@@ -78,21 +76,11 @@ public class ManagerInfoFragment extends Fragment {
         });
     }
 
-    private void showUser() {
-
-//        User user = null;
-        User user = new User(id, userAccount, userName);
-
-        tvName.setText(user.getUserName());
-        tvAccount.setText(user.getUserAccount());
-        tvPri.setText(R.string.tvManager);
-
-    }
 
     private void getUsers() {
         if (networkConnected(activity)) {
             String url = Common.URL + "/UserServlet";
-            List<User> users = null;
+//           List<User> users = null;
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("action", "findById");
             jsonObject.addProperty("id", 2);
@@ -101,23 +89,25 @@ public class ManagerInfoFragment extends Fragment {
             if (networkConnected(activity)) {
                 try {
                     String jsonIn = userTask.execute().get();
-                    Type listType = new TypeToken<List<User>>() {
-                    }
-                            .getType();
-                    users = new Gson().fromJson(jsonIn, listType);
+                    user = new Gson().fromJson(jsonIn, User.class);
+//                    Type listType = new TypeToken<List<User>>() {
+//                    }
+//                    .getType();
+//                    users = new Gson().fromJson(jsonIn, listType);
                 } catch (Exception e) {
 //                        Log.e(TAG, e.toString());
                 }
-                if (users == null || users.isEmpty()) {
-
+                if (user == null)
+                {
+                    Common.showToast(activity, R.string.text_NoReturn);
                 } else {
-
+                    tvName.setText(user.getUserName());
+                    tvAccount.setText(user.getUserAccount());
                 }
             }
         } else {
-//                showToast(this, R.string.text_NoNetwork);
+                Common.showToast(activity, R.string.text_NoNetwork);
         }
-//        return users;
     }
 
 }
