@@ -3,23 +3,23 @@ package com.example.tsaimengfu.cp103team2project.Management;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    private String id;
+    private int id;
     private String userAccount;
     private String userName;
 //    private Boolean priority;
 
-    public User(String id, String userAccount, String userName) {
+    public User(int id, String userAccount, String userName) {
         this.id = id;
         this.userAccount = userAccount;
         this.userName = userName;
 //        this.priority = priority;
     }
 // 01
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
