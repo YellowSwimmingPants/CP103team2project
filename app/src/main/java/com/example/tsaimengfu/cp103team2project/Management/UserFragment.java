@@ -88,7 +88,7 @@ public class UserFragment extends Fragment {
 // 假資料
     private List<User> getUsers(){
         List<User> users = new ArrayList<>();
-        users.add(new User(2,"apple","Mark",true));
+        users.add(new User(2,"apple","Mark"));
         return users;
     }
 

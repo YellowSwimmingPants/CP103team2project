@@ -5,13 +5,13 @@ import java.io.Serializable;
 class Manager implements Serializable {
     private int id;
     private String userAccount, userName;
-    private boolean priority;
-// 01
-    public Manager(int id, String userAccount, String userName, Boolean priority) {
+//    private boolean priority;
+
+    public Manager(int id, String userAccount, String userName) {
         this.id = id;
         this.userAccount = userAccount;
         this.userName = userName;
-        this.priority = priority;
+//        this.priority = priority;
     }
 
     public int getId() {
@@ -38,11 +38,11 @@ class Manager implements Serializable {
         this.userName = userName;
     }
 
-    public Boolean getPriority() {
-        return priority;
-    }
-
-    public void setPriority(Boolean priority) {
-        this.priority = priority;
-    }
+//    public Boolean getPriority() {
+//        return priority;
+//    }
+//
+//    public void setPriority(Boolean priority) {
+//        this.priority = priority;
+//    }
 }
