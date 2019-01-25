@@ -14,10 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageButton
-            android:id="@+id/ib_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/iv_photo"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
             android:background="#ffffff"
             android:src="@drawable/camera"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,7 @@
             android:hint="請輸入隊名"
             android:textColor="@color/colorPrimary"
             android:textSize="25sp"
-            app:layout_constraintStart_toEndOf="@id/ib_photo" />
+            app:layout_constraintStart_toEndOf="@id/iv_photo" />
 
         <Button
             android:id="@+id/btEnter"
@@ -40,6 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="確定"
+            android:onClick="onEnterClick"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@id/etTeamName"
             app:layout_constraintTop_toBottomOf="@+id/etTeamName" />

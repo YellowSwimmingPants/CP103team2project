@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private CommonTask userValidTask;
     private TextView tvMessage;
 
-    public MainActivity() {
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,72 +46,75 @@ public class MainActivity extends AppCompatActivity {
         bt_register = (Button) findViewById(R.id.bt_register);
         bt_home = (Button) findViewById(R.id.bt_home);
         setResult(RESULT_CANCELED);
-
-        bt_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //trim是去掉首尾空格
-                String account = et_account.getText().toString().trim();
-                String password = et_password.getText().toString().trim();
-                // Check for empty data in the form
-                if (!account.isEmpty() && !password.isEmpty()) {
-                 showMessage(R.string.msg_InvalidUserOrPassword);
-                }
-                if (isUser(account, password)) {
-                    SharedPreferences preferences = getSharedPreferences(
-                            Common.PREF_FILE, MODE_PRIVATE);
-                    preferences.edit().putBoolean("login", true)
-                            .putString("userId", account)
-                            .putString("password", password).apply();
-                    setResult(RESULT_OK);
-
-                } else {
-                showMessage(R.string.msg_InvalidUserOrPassword);
-                }
-                Intent intent = new Intent(MainActivity.this, CreateTeamActivity.class);
-                startActivity(intent);
-                // login user
-            }
-
-        });
-        bt_register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent nextpage = new Intent(MainActivity.this, RegisterActivity.class);
-                startActivity(nextpage);
-            }
-        });
-
-
-        bt_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent home = new Intent(MainActivity.this, FunctionActivity.class);
-                startActivity(home);
-            }
-        });
-//for facebook source code
-        callbackManager = CallbackManager.Factory.create();
-
-        LoginManager.getInstance().registerCallback(callbackManager,
-                new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
-                        // App code 01
-                    }
-
-                    @Override
-                    public void onCancel() {
-                        // App code
-                    }
-
-                    @Override
-                    public void onError(FacebookException exception) {
-                        // App code
-                    }
-                });
     }
 
+
+
+    private void showMessage(int msgResId) {
+        tvMessage.setText(msgResId);
+    }
+
+    public void onLoginClick(View view) {
+        EditText etUser = findViewById(R.id.et_account);
+        EditText etPassword = findViewById(R.id.et_password);
+        String userId = etUser.getText().toString().trim();
+        String password = etPassword.getText().toString().trim();
+        if (userId.length() <= 0 || password.length() <= 0) {
+            showMessage(R.string.msg_InvalidUserOrPassword);
+            return;
+        }
+
+        if (isUser(userId, password)) {
+            SharedPreferences preferences = getSharedPreferences(
+                    Common.PREF_FILE, MODE_PRIVATE);
+            preferences.edit().putBoolean("login", true)
+                    .putString("userId", userId)
+                    .putString("password", password).apply();
+            setResult(RESULT_OK);
+            Intent intent = new Intent(MainActivity.this, CreateTeamActivity.class);
+                startActivity(intent);
+                // login user
+
+        } else {
+            showMessage(R.string.msg_InvalidUserOrPassword);
+        }
+    }
+
+
+    public void onNewClick(View view) {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+    }
+
+
+    public void onSkipClick(View v) {
+        Intent home = new Intent(MainActivity.this, FunctionActivity.class);
+        startActivity(home);
+    }
+
+
+//for facebook source code
+//        callbackManager = CallbackManager.Factory.create();
+//
+//        LoginManager.getInstance().registerCallback(callbackManager,
+//                new FacebookCallback<LoginResult>() {
+//                    @Override
+//                    public void onSuccess(LoginResult loginResult) {
+//                        // App code 01
+//                    }
+//
+//                    @Override
+//                    public void onCancel() {
+//                        // App code
+//                    }
+//
+//                    @Override
+//                    public void onError(FacebookException exception) {
+//                        // App code
+//                    }
+//                });
+//    }
+//
 
     private boolean isUser(final String userId, final String password) {
         boolean isUser = false;
@@ -137,9 +138,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return isUser;
     }
-    private void showMessage(int msgResId) {
-        tvMessage.setText(msgResId);
-    }
 
     @Override
     protected void onStop() {
@@ -151,6 +149,35 @@ public class MainActivity extends AppCompatActivity {
 
 }
 
-
-
-
+//
+//
+//
+// bt_login.setOnClickListener(new View.OnClickListener() {
+//@Override
+//public void onClick(View v) {
+//        //trim是去掉首尾空格
+//        String account = et_account.getText().toString().trim();
+//        String password = et_password.getText().toString().trim();
+//        // Check for empty data in the form
+//        if (!account.isEmpty() && !password.isEmpty()) {
+//        showMessage(R.string.msg_InvalidUserOrPassword);
+//
+//        }
+//        if (isUser(account, password)) {
+//        SharedPreferences preferences = getSharedPreferences(
+//        Common.PREF_FILE, MODE_PRIVATE);
+//        preferences.edit().putBoolean("login", true)
+//        .putString("userId", account)
+//        .putString("password", password).apply();
+//        setResult(RESULT_OK);
+//        finish();
+//
+//        } else {
+//        showMessage(R.string.msg_InvalidUserOrPassword);
+//        }
+////                Intent intent = new Intent(MainActivity.this, CreateTeamActivity.class);
+////                startActivity(intent);
+////                // login user
+//        }
+//
+//        });
