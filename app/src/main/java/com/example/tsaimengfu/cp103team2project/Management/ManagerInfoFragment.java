@@ -93,6 +93,7 @@ public class ManagerInfoFragment extends Fragment {
                 try {
                     String jsonIn = userTask.execute().get();
                     user = new Gson().fromJson(jsonIn, User.class);
+                    System.out.println(user);
 //                    Type listType = new TypeToken<List<User>>() {
 //                    }
 //                    .getType();

@@ -31,11 +31,17 @@ import static com.example.tsaimengfu.cp103team2project.task.Common.networkConnec
 
 
 public class ManagerFragment extends Fragment {
+
+    public ManagerFragment(){
+
+    }
+
     Activity activity;
     private CommonTask userTask;
     private RecyclerView rvManagers;
     private SwipeRefreshLayout srUsers;
-    List<Manager> managers = null;
+    List<User> users = null;
+
 
     @Nullable
     @Override
@@ -60,11 +66,11 @@ public class ManagerFragment extends Fragment {
 
     private class ManagerAdapter extends RecyclerView.Adapter<ManagerAdapter.MyViewHolder> {
         Context context;
-        List<Manager> managers;
+        List<User> users;
 
-        public ManagerAdapter(Context context, List<Manager> managers) {
+        public ManagerAdapter(Context context, List<User> users) {
             this.context = context;
-            this.managers = managers;
+            this.users = users;
         }
 
         @NonNull
@@ -77,15 +83,15 @@ public class ManagerFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-            final Manager manager = managers.get(i);
-            myViewHolder.tvUserAccount.setText(manager.getUserAccount());
-            myViewHolder.tvUserName.setText(manager.getUserName());
+            final User user = users.get(i);
+            myViewHolder.tvUserAccount.setText(user.getUserAccount());
+            myViewHolder.tvUserName.setText(user.getUserName());
             myViewHolder.swPriority.setChecked(true);
         }
 
         @Override
         public int getItemCount() {
-            return managers.size();
+            return users.size();
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder {
@@ -110,10 +116,7 @@ public class ManagerFragment extends Fragment {
     }
 
     // 假資料
-    private List<Manager> getManagers() {
-//        List<Manager> managers = new ArrayList<>();
-//        managers.add(new Manager(1, "psy", "John"));
-//        return managers;
+    private void getManagers() {
         String url = Common.URL + "/UserServlet";
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("action", "getAll");
@@ -125,18 +128,18 @@ public class ManagerFragment extends Fragment {
                 Type listType = new TypeToken<List<User>>() {
                 }
                 .getType();
-                managers = new Gson().fromJson(jsonIn, listType);
+                users = new Gson().fromJson(jsonIn, listType);
             } catch (Exception e) {
 //                        Log.e(TAG, e.toString());
             }
-            if (managers == null || managers.isEmpty()) {
+            if (users == null || users.isEmpty()) {
 
             } else {
-                rvManagers.setAdapter(new ManagerAdapter(activity, managers));
+                rvManagers.setAdapter(new ManagerAdapter(activity, users));
             }
         } else {
 //                showToast(this, R.string.text_NoNetwork);
         }
-        return managers;
+
     }
 }
