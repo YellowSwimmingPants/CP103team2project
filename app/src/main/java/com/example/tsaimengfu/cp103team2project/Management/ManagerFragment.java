@@ -32,9 +32,9 @@ import static com.example.tsaimengfu.cp103team2project.task.Common.networkConnec
 
 public class ManagerFragment extends Fragment {
 
-    public ManagerFragment(){
-
-    }
+//    public ManagerFragment(){
+//
+//    }
 
     Activity activity;
     private CommonTask userTask;

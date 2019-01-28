@@ -30,9 +30,9 @@ import static com.example.tsaimengfu.cp103team2project.task.Common.networkConnec
 
 public class UserFragment extends Fragment {
 
-    public UserFragment(){
-
-    }
+//    public UserFragment(){
+//
+//    }
 
     Activity activity;
     private CommonTask userTask;

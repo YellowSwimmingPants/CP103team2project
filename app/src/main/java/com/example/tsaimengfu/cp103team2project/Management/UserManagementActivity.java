@@ -5,6 +5,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -25,9 +26,10 @@ public class UserManagementActivity extends AppCompatActivity {
         setContentView(R.layout.fragment_user_list_tab);
         userTabLayout = findViewById(R.id.userTabLayout);
         usersViewPager = findViewById(R.id.usersViewPager);
+        show();
 //        Fragment ManagerFragment = new ManagerFragment();
-//        Fragment UserFragment = new UserFragment();
 //        getSupportFragmentManager().beginTransaction().add(R.id.flUsers, ManagerFragment).commit();
+//        Fragment UserFragment = new UserFragment();
 //        getSupportFragmentManager().beginTransaction().add(R.id.flUsers, UserFragment).commit();
         userTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -47,7 +49,8 @@ public class UserManagementActivity extends AppCompatActivity {
         });
 
         usersViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(userTabLayout));
-        usersPageAdapter = new UsersPageAdapter(this.getSupportFragmentManager(), userTabLayout.getTabCount());
+        usersPageAdapter = new UsersPageAdapter(getSupportFragmentManager(), userTabLayout.getTabCount());
+
     }
 
     private class UsersPageAdapter extends FragmentStatePagerAdapter {
@@ -68,6 +71,7 @@ public class UserManagementActivity extends AppCompatActivity {
                     return new UserFragment();
 
                 default:
+                    show();
                     return null;
             }
         }
@@ -82,4 +86,16 @@ public class UserManagementActivity extends AppCompatActivity {
             return POSITION_NONE;
         }
     }
+    private void show(){
+        Fragment fragment = new ManagerFragment();
+        switchFragment(fragment);
+    }
+
+    private void switchFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction =
+                getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.flUsers, fragment);
+        fragmentTransaction.commit();
+    }
+
 }
