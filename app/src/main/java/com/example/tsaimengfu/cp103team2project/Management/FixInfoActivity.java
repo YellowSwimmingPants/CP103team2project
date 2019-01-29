@@ -4,12 +4,14 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,11 +19,19 @@ import android.widget.TextView;
 
 import com.example.tsaimengfu.cp103team2project.FunctionActivity;
 import com.example.tsaimengfu.cp103team2project.R;
+import com.example.tsaimengfu.cp103team2project.task.Common;
+import com.example.tsaimengfu.cp103team2project.task.CommonTask;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 public class FixInfoActivity extends AppCompatActivity {
+    private static final String TAG = "FixInfoActivity";
     private Button btCommit, btCancel;
-    private TextView tvUserName, tvInputUserPassword, tvInputNewPassword, tvInputNewPasswordAgain;
+    private TextView tvUserName, tvInputUserPassword, tvInputNewPassword, tvInputNewPasswordAgain, tvMessage;
     private EditText etUserName, etInputUserPassword, etInputNewPassword, etInputNewPasswordAgain;
+    private CommonTask userUpdateTask, userPasswordExistTask;
+    private boolean userPasswordExist = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,54 +51,100 @@ public class FixInfoActivity extends AppCompatActivity {
         etInputUserPassword = findViewById(R.id.etInputUserPassword);
         etInputNewPassword = findViewById(R.id.etInputNewPassword);
         etInputNewPasswordAgain = findViewById(R.id.etInputNewPasswordAgain);
+        tvMessage = findViewById(R.id.tvMessage);
 
-        btCommit.setOnClickListener(new View.OnClickListener() {
+//        檢查密碼是否正確
+        etInputUserPassword.setOnFocusChangeListener(new  View.OnFocusChangeListener(){
             @Override
-            public void onClick(View v) {
-                String name = etUserName.getText().toString().trim();
-                if (name.length() <= 0) {
-
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus){
+                    if (Common.networkConnected(FixInfoActivity.this)){
+                        String url = Common.URL + "/UserServlet";
+                        JsonObject jsonObject = new JsonObject();
+                        jsonObject.addProperty("action", "userPasswordExist");
+                        jsonObject.addProperty("userId", etInputUserPassword.getText().toString());
+                        String jsonOut = jsonObject.toString();
+                        userPasswordExistTask = new CommonTask(url, jsonOut);
+                        try {
+                            String result = userPasswordExistTask.execute().get();
+                            userPasswordExist = Boolean.valueOf(result);
+                        } catch (Exception e) {
+                            Log.e(TAG, e.toString());
+                        }
+                        if (userPasswordExist) {
+//                            tvMessage.setText(R.string.msg_UserIdExist);
+                        } else {
+                            tvMessage.setText(null);
+                        }
+                    }
                 }
-                String password = etInputUserPassword.getText().toString().trim();
-                if (password.length() <= 0) {
-
-                }
-                String newPassword = etInputNewPassword.getText().toString().trim();
-                if (newPassword.length() <= 0) {
-
-                }
-                String newPasswordAgain = etInputNewPasswordAgain.getText().toString().trim();
-                if (newPasswordAgain != newPassword) {
-
-                }
-//                if(Common.networkConnected(activity)){
-//                    String url = Common.URL + "/UserServlet";
-//                    NewUser newUser = new NewUser(0, name, password);
-//                    JsonObject jsonObject = new JsonObject();
-//                    jsonObject.addProperty("action","userUpdate");
-//                    jsonObject.addProperty("user", new Gson().toJson(newUser));
-//                    try {
-//                        String result = new CommonTask(url, jsonObject.toString()).execute().get();
-////                        count = Integer.valueOf(result);
-//                    } catch (Exception e) {
-////                        Log.e(TAG, e.toString());
-//                    }
-//                }
-
             }
         });
-
     }
 
-    private class NewUser  {
-        private int id;
-        private String  userName,newPassword;
-        public NewUser(int id, String userName, String newPassword) {
-            this.id = id;
-            this.userName = userName;
-            this.newPassword = newPassword;
+    public void onUpdateClick(View view){
+        String userName = etUserName.getText().toString().trim();
+        String password = etInputUserPassword.getText().toString().trim();
+        String newPassword = etInputNewPassword.getText().toString().trim();
+        String newPasswordAgain = etInputNewPasswordAgain.getText().toString().trim();
+
+        class NewUser  {
+            private String  name,password;
+            public NewUser(String name, String password) {
+                this.name = name;
+                this.password = password;
+            }
+        }
+
+        String message = "";
+        boolean isInputValid = true;
+        if(userName.isEmpty()){
+            isInputValid = false;
+        }
+        if(password.isEmpty()){
+            isInputValid = false;
+        }
+        if(newPassword.isEmpty()){
+            isInputValid = false;
+        }
+        if(newPasswordAgain.isEmpty()){
+            isInputValid = false;
+        }
+        if(!newPasswordAgain.equals(newPassword)){
+            isInputValid = false;
+        }
+
+        NewUser newUser = new NewUser(userName, password);
+        if (isInputValid){
+            if (Common.networkConnected(FixInfoActivity.this)){
+                String url = Common.URL + "/UserServlet";
+                JsonObject jsonObject = new JsonObject();
+                jsonObject.addProperty("action", "update");
+                jsonObject.addProperty("user", new Gson().toJson(newUser));
+                String jsonOut = jsonObject.toString();
+                userUpdateTask = new CommonTask(url, jsonOut);
+                int count = 0;
+                try {
+                    String result = userUpdateTask.execute().get();
+                    count = Integer.valueOf(result);
+                }catch (Exception e) {
+                        Log.e(TAG, e.toString());
+                    }
+                if (count == 0) {
+                    tvMessage.setText(R.string.msg_FailCreateAccount);
+                } else {
+                    SharedPreferences preferences = getSharedPreferences(
+                            Common.PREF_FILE, MODE_PRIVATE);
+                    preferences.edit().putBoolean("login", true)
+                            .putString("userName", userName)
+                            .putString("password", newPassword).apply();
+                }
+            }
         }
     }
+
+
+
 
     public static class AlertDialogFragment
             extends DialogFragment implements DialogInterface.OnClickListener {

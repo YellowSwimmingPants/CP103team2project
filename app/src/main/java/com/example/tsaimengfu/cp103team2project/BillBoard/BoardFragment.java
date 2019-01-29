@@ -102,6 +102,11 @@ public class BoardFragment extends Fragment {
         List<Board> boards = new ArrayList<>();
         boards.add(new Board(3, "title", "massege"));
         boards.add(new Board(4, "title", "massege"));
+        boards.add(new Board(4, "title", "massege"));
+        boards.add(new Board(4, "title", "massege"));
+        boards.add(new Board(4, "title", "massege"));
+        boards.add(new Board(4, "title", "massege"));
+        boards.add(new Board(4, "title", "massege"));
 
         return boards;
     }
