@@ -9,8 +9,7 @@ import android.widget.Toast;
 public class Common {
 	// Android官方模擬器連結本機web server可以直接使用 http://10.0.2.2
 //	public static String URL = "http://192.168.196.185:8080/TextToJson_Web";
-	public static String URL = "http://10.0.2.2:8080/MyAndroidProject";
-
+	public static String URL = "http://10.0.2.2:8080/BAserver";
 public final static String PREF_FILE = "preference";
 //	 check if the device connect to the network
 	public static boolean networkConnected(Activity activity) {
