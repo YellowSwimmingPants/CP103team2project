@@ -61,4 +61,6 @@
     <string name="msg_NoImage">沒有圖片</string>
     <string name="msg_InsertFail">新增失敗</string>
     <string name="msg_InsertSuccess">新增成功</string>
+    <string name="btExitTeam">退出球隊</string>
+    <string name="msg_FailUpdateAccount">資料更新失敗</string>
 </resources>

@@ -2,9 +2,6 @@ package com.example.tsaimengfu.cp103team2project.Management;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -48,20 +45,6 @@ public class UserManagementActivity extends AppCompatActivity {
         usersPageAdapter = new UserPageAdapter(getSupportFragmentManager(), userTabLayout.getTabCount());
         usersViewPager.setAdapter(usersPageAdapter);
 
-    }
-
-
-    private void show() {
-        Fragment fragment = new ManagerFragment();
-        switchFragment(fragment);
-    }
-
-    private void switchFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction =
-                fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.flUsers, fragment);
-        fragmentTransaction.commit();
     }
 
 }

@@ -1,11 +1,16 @@
 package com.example.tsaimengfu.cp103team2project.Management;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.tsaimengfu.cp103team2project.FunctionActivity;
 import com.example.tsaimengfu.cp103team2project.R;
 import com.example.tsaimengfu.cp103team2project.task.Common;
 import com.example.tsaimengfu.cp103team2project.task.CommonTask;
@@ -30,11 +36,11 @@ import static com.example.tsaimengfu.cp103team2project.task.Common.showToast;
 
 
 public class ManagerInfoFragment extends Fragment {
-    private Button btFixInfo, btManagement;
+    private Button btFixInfo, btManagement, btExitTeam;
     private TextView tvUserAccount, tvAccount, tvUserName, tvName, tvPriority, tvPri;
     private Activity activity;
     private CommonTask userTask;
-    String userAccount, userName;
+//    String userAccount, userName;
     User user = null;
 
 
@@ -54,6 +60,7 @@ public class ManagerInfoFragment extends Fragment {
     private void show(View view) {
         btFixInfo = view.findViewById(R.id.btFixInfo);
         btManagement = view.findViewById(R.id.btManagement);
+        btExitTeam = view.findViewById(R.id.btExitTeam);
         tvUserAccount = view.findViewById(R.id.tvUserAccount);
         tvAccount = view.findViewById(R.id.tvAccount);
         tvUserName = view.findViewById(R.id.tvUserName);
@@ -110,5 +117,6 @@ public class ManagerInfoFragment extends Fragment {
                 Common.showToast(activity, R.string.text_NoNetwork);
         }
     }
+
 
 }

@@ -131,7 +131,7 @@ public class FixInfoActivity extends AppCompatActivity {
                         Log.e(TAG, e.toString());
                     }
                 if (count == 0) {
-                    tvMessage.setText(R.string.msg_FailCreateAccount);
+                    tvMessage.setText(R.string.msg_FailUpdateAccount);
                 } else {
                     SharedPreferences preferences = getSharedPreferences(
                             Common.PREF_FILE, MODE_PRIVATE);
