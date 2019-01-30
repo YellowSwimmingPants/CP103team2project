@@ -30,9 +30,9 @@ import static com.example.tsaimengfu.cp103team2project.task.Common.networkConnec
 
 public class UserFragment extends Fragment {
 
-//    public UserFragment(){
-//
-//    }
+    public UserFragment(){
+
+    }
 
     Activity activity;
     private CommonTask userTask;
@@ -87,6 +87,7 @@ public class UserFragment extends Fragment {
             final User user = users.get(i);
             myViewHolder.tvUserAccount.setText(user.getUserAccount());
             myViewHolder.tvUserName.setText(user.getUserName());
+            myViewHolder.swPriority.setChecked(false);
         }
 
         @Override
@@ -103,14 +104,16 @@ public class UserFragment extends Fragment {
                 tvUserAccount = itemView.findViewById(R.id.tvUserAccount);
                 tvUserName = itemView.findViewById(R.id.tvUserName);
                 swPriority = itemView.findViewById(R.id.swPriority);
+                swPriority.setChecked(false);
             }
         }
 
     }
 
     private void handleViews(View view) {
-        RecyclerView recyclerView = view.findViewById(R.id.recycleView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(activity));
+        rvUsers = view.findViewById(R.id.recycleView);
+        rvUsers.setLayoutManager(new LinearLayoutManager(activity));
+        getUsers();
     }
 // 假資料
 private void getUsers() {
@@ -118,8 +121,8 @@ private void getUsers() {
         String url = Common.URL + "/UserServlet";
 //           List<User> users = null;
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("action", "findById");
-        jsonObject.addProperty("id", 4);
+        jsonObject.addProperty("action", "getAll");
+//        jsonObject.addProperty("id", 2);
         userTask = new CommonTask(url, jsonObject.toString());
 
         if (networkConnected(activity)) {

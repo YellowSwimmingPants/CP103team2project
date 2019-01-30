@@ -86,7 +86,7 @@ public class ManagerInfoFragment extends Fragment {
 //           List<User> users = null;
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("action", "findById");
-            jsonObject.addProperty("id", 2);
+            jsonObject.addProperty("id", 4);
             userTask = new CommonTask(url, jsonObject.toString());
 
             if (networkConnected(activity)) {
@@ -94,10 +94,7 @@ public class ManagerInfoFragment extends Fragment {
                     String jsonIn = userTask.execute().get();
                     user = new Gson().fromJson(jsonIn, User.class);
                     System.out.println(user);
-//                    Type listType = new TypeToken<List<User>>() {
-//                    }
-//                    .getType();
-//                    users = new Gson().fromJson(jsonIn, listType);
+
                 } catch (Exception e) {
 //                        Log.e(TAG, e.toString());
                 }

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -19,18 +18,15 @@ public class UserManagementActivity extends AppCompatActivity {
     private PagerAdapter usersPageAdapter;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_user_list_tab);
         userTabLayout = findViewById(R.id.userTabLayout);
         usersViewPager = findViewById(R.id.usersViewPager);
-        show();
-//        Fragment ManagerFragment = new ManagerFragment();
-//        getSupportFragmentManager().beginTransaction().add(R.id.flUsers, ManagerFragment).commit();
-//        Fragment UserFragment = new UserFragment();
-//        getSupportFragmentManager().beginTransaction().add(R.id.flUsers, UserFragment).commit();
+//        show();
+
+
         userTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -49,51 +45,21 @@ public class UserManagementActivity extends AppCompatActivity {
         });
 
         usersViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(userTabLayout));
-        usersPageAdapter = new UsersPageAdapter(getSupportFragmentManager(), userTabLayout.getTabCount());
+        usersPageAdapter = new UserPageAdapter(getSupportFragmentManager(), userTabLayout.getTabCount());
+        usersViewPager.setAdapter(usersPageAdapter);
 
     }
 
-    private class UsersPageAdapter extends FragmentStatePagerAdapter {
 
-        private int numOfTabs;
-
-        public UsersPageAdapter(FragmentManager fm, int numOfTabs) {
-            super(fm);
-            this.numOfTabs = numOfTabs;
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-                    return new ManagerFragment();
-                case 1:
-                    return new UserFragment();
-
-                default:
-                    show();
-                    return null;
-            }
-        }
-        //取得分頁頁數
-        @Override
-        public int getCount() {
-            return numOfTabs;
-        }
-
-        @Override
-        public int getItemPosition(Object object) {
-            return POSITION_NONE;
-        }
-    }
-    private void show(){
+    private void show() {
         Fragment fragment = new ManagerFragment();
         switchFragment(fragment);
     }
 
     private void switchFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction =
-                getSupportFragmentManager().beginTransaction();
+                fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.flUsers, fragment);
         fragmentTransaction.commit();
     }

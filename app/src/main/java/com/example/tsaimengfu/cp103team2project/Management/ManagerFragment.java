@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.example.tsaimengfu.cp103team2project.Management.Manager;
 import com.example.tsaimengfu.cp103team2project.R;
 import com.example.tsaimengfu.cp103team2project.task.Common;
 import com.example.tsaimengfu.cp103team2project.task.CommonTask;
@@ -24,7 +23,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.tsaimengfu.cp103team2project.task.Common.networkConnected;
@@ -32,15 +30,15 @@ import static com.example.tsaimengfu.cp103team2project.task.Common.networkConnec
 
 public class ManagerFragment extends Fragment {
 
-//    public ManagerFragment(){
-//
-//    }
+    public ManagerFragment() {
+
+    }
 
     Activity activity;
     private CommonTask userTask;
     private RecyclerView rvManagers;
     private SwipeRefreshLayout srUsers;
-    List<User> users = null;
+    List<Manager> managers = null;
 
 
     @Nullable
@@ -66,11 +64,11 @@ public class ManagerFragment extends Fragment {
 
     private class ManagerAdapter extends RecyclerView.Adapter<ManagerAdapter.MyViewHolder> {
         Context context;
-        List<User> users;
+        List<Manager> managers;
 
-        public ManagerAdapter(Context context, List<User> users) {
+        public ManagerAdapter(Context context, List<Manager> managers) {
             this.context = context;
-            this.users = users;
+            this.managers = managers;
         }
 
         @NonNull
@@ -83,15 +81,15 @@ public class ManagerFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-            final User user = users.get(i);
-            myViewHolder.tvUserAccount.setText(user.getUserAccount());
-            myViewHolder.tvUserName.setText(user.getUserName());
+            final Manager manager = managers.get(i);
+            myViewHolder.tvUserAccount.setText(manager.getUserAccount());
+            myViewHolder.tvUserName.setText(manager.getUserName());
             myViewHolder.swPriority.setChecked(true);
         }
 
         @Override
         public int getItemCount() {
-            return users.size();
+            return managers.size();
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder {
@@ -125,17 +123,17 @@ public class ManagerFragment extends Fragment {
         if (networkConnected(activity)) {
             try {
                 String jsonIn = userTask.execute().get();
-                Type listType = new TypeToken<List<User>>() {
+                Type listType = new TypeToken<List<Manager>>() {
                 }
-                .getType();
-                users = new Gson().fromJson(jsonIn, listType);
+                        .getType();
+                managers = new Gson().fromJson(jsonIn, listType);
             } catch (Exception e) {
 //                        Log.e(TAG, e.toString());
             }
-            if (users == null || users.isEmpty()) {
-
+            if (managers == null || managers.isEmpty()) {
+                Common.showToast(activity, R.string.text_NoReturn);
             } else {
-                rvManagers.setAdapter(new ManagerAdapter(activity, users));
+                rvManagers.setAdapter(new ManagerAdapter(activity, managers));
             }
         } else {
 //                showToast(this, R.string.text_NoNetwork);
